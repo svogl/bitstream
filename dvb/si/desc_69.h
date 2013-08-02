@@ -137,7 +137,7 @@ static inline void desc69_print(const uint8_t *p_desc, f_print pf_print,
         break;
     case PRINT_JSON:
         pf_print(opaque,
-                 "{'desc':'PDC','pil':\"0x%x\",'day':\"%u\",'month':\"%u\",'hour':\"%u\",'min':\"%u\"}",
+                 "{'desc':'PDC','pil':0x%x,'day':%u,'month':%u,'hour':%u,'min':%u}",
                  desc69_get_pil(p_desc),
                  desc69_get_day(p_desc),
                  desc69_get_month(p_desc),

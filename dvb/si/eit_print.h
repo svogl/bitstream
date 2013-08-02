@@ -76,8 +76,8 @@ static inline void eit_print(uint8_t *p_eit,
         break;
 	case PRINT_JSON:
 		pf_print(print_opaque,
-	            "{'table':'EIT','tableid':'0x%02x','type':\"%s\",'sid':\"%u\",'version':\"%u\""
-	            ",'current_next':\"%u\",'tsid':\"%u\",'onid':\"%u\",'events':[",
+	            "{'table':'EIT','tableid':'0x%02x','type':\"%s\",'sid':%u,'version':%u"
+	            ",'current_next':%u,'tsid':%u,'onid':%u,'events':[",
 	             i_tid, psz_tid,
 	             eit_get_sid(p_eit),
 	             psi_get_version(p_eit),
@@ -123,9 +123,9 @@ static inline void eit_print(uint8_t *p_eit,
                     );
             break;
 		case PRINT_JSON:
-		    pf_print(print_opaque, "{'id':\"%u\",'start_time':\"%ld\",'start_time_dec':\"%s\""
-		                           ",'duration':\"%u\",'duration_dec':\"%s\""
-		                           ",'running':\"%d\",'free_CA':\"%d\",'descs':[",
+		    pf_print(print_opaque, "{'id':%u,'start_time':%ld,'start_time_dec':\"%s\""
+		                           ",'duration':%u,'duration_dec':\"%s\""
+		                           ",'running':%d,'free_CA':%d,'descs':[",
 		             eitn_get_event_id(p_event),
 		             start_ts, start_str,
 		             duration, duration_str,

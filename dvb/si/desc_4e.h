@@ -228,7 +228,7 @@ static inline void desc4e_print(uint8_t *p_desc,
     case PRINT_JSON:
         psz_text = dvb_string_xml_escape(psz_text);
         pf_print(print_opaque,
-                 "{'desc':'EXTENDED_EVENT','desc_number':\"%u\",'last_desc_number':\"%u\""
+                 "{'desc':'EXTENDED_EVENT','desc_number':%u,'last_desc_number':%u"
                  ",'lang':\"%3.3s\",'text':\"%s\",details:[",
                  desc4e_get_desc_number(p_desc),
                  desc4e_get_last_desc_number(p_desc),
