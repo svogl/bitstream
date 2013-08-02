@@ -94,7 +94,7 @@ static inline void desc_print_begin(const uint8_t *p_desc, f_print pf_print,
             sprintf(psz_value + 2 * i, "%2.2hhx", p_desc[2 + i]);
         psz_value[2 * i] = '\0';
 
-        pf_print(opaque, "{'type':'DESC','id':0x%02x,'length':%u,'value':\"%s\",'data':",
+        pf_print(opaque, "{'type':'DESC','id':0x%02x,'length':%u,'value':\"%s\",'data':[",
                  desc_get_tag(p_desc), i_length, psz_value);
         break;
     }
@@ -111,7 +111,7 @@ static inline void desc_print_end(const uint8_t *p_desc, f_print pf_print,
         pf_print(opaque, "</DESC>");
         break;
     case PRINT_JSON:
-        pf_print(opaque, "}");
+        pf_print(opaque, "]}");
         break;
     default:
         break;

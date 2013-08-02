@@ -80,6 +80,10 @@ static inline void desc5f_print(const uint8_t *p_desc, f_print pf_print,
         pf_print(opaque, "<PRIVATE_DATA_SPECIFIER_DESC specifier=\"0x%08x\" />",
                  desc5f_get_specifier(p_desc));
         break;
+    case PRINT_JSON:
+        pf_print(opaque, "{'desc':'PRIVATE_DATA_SPECIFIER',specifier:0x%08x}",
+                 desc5f_get_specifier(p_desc));
+        break;
     default:
         pf_print(opaque, "    - desc 5f private_data specifier=0x%08x",
                  desc5f_get_specifier(p_desc));

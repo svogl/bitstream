@@ -91,6 +91,10 @@ static inline void desc53_print(uint8_t *p_desc, f_print pf_print,
             pf_print(opaque, "<CA_IDENTIFIER_DESC ca_sysid=\"0x%04x\"/>",
                      desc53n_get_ca_sysid(p_desc_n));
             break;
+        case PRINT_JSON:
+            pf_print(opaque, "{'desc':'CA_IDENTIFIER','ca_sysid':0x%04x}",
+                     desc53n_get_ca_sysid(p_desc_n));
+            break;
         default:
             pf_print(opaque,"    - desc 53 ca_identifier ca_sysid=0x%04x",
                      desc53n_get_ca_sysid(p_desc_n));

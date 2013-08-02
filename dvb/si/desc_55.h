@@ -103,6 +103,13 @@ static inline void desc55_print(uint8_t *p_desc, f_print pf_print,
                      rating_txt
                     );
             break;
+        case PRINT_JSON:
+            pf_print(opaque, "{'desc':'PARENTAL_RATING','country_code':\"%3.3s\",'rating':%u,'rating_txt':\"%s\"}",
+                     (char *)desc55n_get_country_code(p_desc_n),
+                     desc55n_get_rating(p_desc_n),
+                     rating_txt
+                    );
+            break;
         default:
             pf_print(opaque,"    - desc 55 parental_rating country_code=%3.3s rating=%u rating_txt=\"%s\"",
                      (char *)desc55n_get_country_code(p_desc_n),

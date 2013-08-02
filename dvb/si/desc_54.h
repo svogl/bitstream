@@ -104,6 +104,9 @@ static inline void desc54_print(uint8_t *p_desc, f_print pf_print,
 
     while ((p_desc_n = desc54_get_content(p_desc, j)) != NULL) {
         j++;
+        if (i_print_type==PRINT_JSON && (j>1)) {
+            pf_print(opaque, ",");
+        }
         switch (i_print_type) {
         case PRINT_XML:
             pf_print(opaque, "<CONTENT_DESC content_l1=\"%u\" content_l2=\"%u\" user=\"%u\"/>",

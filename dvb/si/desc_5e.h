@@ -137,6 +137,15 @@ static inline void desc5e_print(const uint8_t *p_desc,
                      psz_text
                     );
             break;
+        case PRINT_JSON:
+            psz_text = dvb_string_xml_escape(psz_text);
+            pf_print(print_opaque,
+                     "{'desc':'MULTILINGUAL_COMPONENT','code':\"%3.3s\",'tag'=%u,'text':\"%s\"}",
+                     desc5en_get_code(p_desc_n),
+                     desc5e_get_component_tag(p_desc),
+                     psz_text
+                    );
+            break;
         default:
             pf_print(print_opaque,
                      "    - desc 5e multilingual_component code=\"%3.3s\" component_tag=%u text=\"%s\"",
