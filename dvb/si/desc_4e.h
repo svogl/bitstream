@@ -225,6 +225,17 @@ static inline void desc4e_print(uint8_t *p_desc,
                  psz_text
                 );
         break;
+    case PRINT_JSON:
+        psz_text = dvb_string_xml_escape(psz_text);
+        pf_print(print_opaque,
+                 "{'desc':'EXTENDED_EVENT','desc_number':\"%u\",'last_desc_number':\"%u\""
+                 ",'lang':\"%3.3s\",'text':\"%s\",details:[",
+                 desc4e_get_desc_number(p_desc),
+                 desc4e_get_last_desc_number(p_desc),
+                 (char *)desc4e_get_lang(p_desc),
+                 psz_text
+                );
+        break;
     default:
         pf_print(print_opaque,
                  "    - desc 4e extended_event desc_number=%u"
@@ -253,6 +264,14 @@ static inline void desc4e_print(uint8_t *p_desc,
             pf_print(print_opaque, "<EXTENDED_EVENT_ITEM description=\"%s\" text=\"%s\"/>",
                      psz_desc, psz_item);
             break;
+        case PRINT_JSON:
+            psz_desc = dvb_string_xml_escape(psz_desc);
+            psz_item = dvb_string_xml_escape(psz_item);
+			if (j>1)
+	            pf_print(print_opaque, ",");
+            pf_print(print_opaque, "{'description':\"%s\",'text'=\"%s\"}",
+                     psz_desc, psz_item);
+            break;
         default:
             pf_print(print_opaque,"       - extended_event_item description=\"%s\" text=\"%s\"",
                      psz_desc, psz_item);
@@ -264,6 +283,8 @@ static inline void desc4e_print(uint8_t *p_desc,
 
     if (i_print_type == PRINT_XML)
         pf_print(print_opaque, "</EXTENDED_EVENT_DESC>");
+    else if (i_print_type == PRINT_JSON)
+        pf_print(print_opaque, "]}");
 }
 
 #ifdef __cplusplus
