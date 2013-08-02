@@ -1049,6 +1049,8 @@ int main(int i_argc, char **ppsz_argv)
                 i_print_type = PRINT_TEXT;
             else if (!strcmp(optarg, "xml"))
                 i_print_type = PRINT_XML;
+            else if (!strcmp(optarg, "json"))
+                i_print_type = PRINT_JSON;
             else
                 fprintf(stderr, "unrecognized print type %s\n", optarg);
             break;
