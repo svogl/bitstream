@@ -135,6 +135,17 @@ static inline void desc50_print(const uint8_t *p_desc,
                  psz_text
                 );
         break;
+    case PRINT_JSON:
+        pf_print(print_opaque,
+                 "{'desc':'COMPONENT','stream_content':\"0x%02x\",'component_type':\"0x%02x\""
+                 ",'component_tag':\"%u\",'language':\"%3.3s\",'text':\"%s\"}",
+                 desc50_get_stream_content(p_desc),
+                 desc50_get_component_type(p_desc),
+                 desc50_get_component_tag(p_desc),
+                 (char *)desc50_get_language(p_desc),
+                 psz_text
+                );
+    	break;
     default:
         pf_print(print_opaque,
                  "    - desc 50 component stream_content=0x%02x component_type=0x%02x"

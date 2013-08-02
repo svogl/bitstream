@@ -43,7 +43,8 @@ extern "C"
 
 typedef enum print_type_t {
     PRINT_TEXT,
-    PRINT_XML
+    PRINT_XML,
+    PRINT_JSON
 } print_type_t;
 
 typedef void (*f_print)(void *, const char *, ...) __attribute__ ((format(printf, 2, 3)));

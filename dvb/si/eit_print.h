@@ -74,6 +74,18 @@ static inline void eit_print(uint8_t *p_eit,
                  eit_get_onid(p_eit)
                 );
         break;
+	case PRINT_JSON:
+		pf_print(print_opaque,
+	            "{'table':'EIT','tableid':'0x%02x','type':\"%s\",'sid':\"%u\",'version':\"%u\""
+	            ",'current_next':\"%u\",'tsid':\"%u\",'onid':\"%u\",'events':[",
+	             i_tid, psz_tid,
+	             eit_get_sid(p_eit),
+	             psi_get_version(p_eit),
+	             !psi_get_current(p_eit) ? 0 : 1,
+	             eit_get_tsid(p_eit),
+	             eit_get_onid(p_eit)
+	            );
+		break;
     default:
         pf_print(print_opaque,
                  "new EIT tableid=0x%02x type=%s service_id=%u version=%u%s tsid=%u"
@@ -110,6 +122,17 @@ static inline void eit_print(uint8_t *p_eit,
                      eitn_get_ca(p_event)
                     );
             break;
+		case PRINT_JSON:
+		    pf_print(print_opaque, "{'id':\"%u\",'start_time':\"%ld\",'start_time_dec':\"%s\""
+		                           ",'duration':\"%u\",'duration_dec':\"%s\""
+		                           ",'running':\"%d\",'free_CA':\"%d\",'descs':[",
+		             eitn_get_event_id(p_event),
+		             start_ts, start_str,
+		             duration, duration_str,
+		             eitn_get_running(p_event),
+		             eitn_get_ca(p_event)
+		            );
+			break;
         default:
             pf_print(print_opaque, "  * EVENT id=%u start_time=%ld start_time_dec=\"%s\" duration=%u duration_dec=%s running=%d free_CA=%d",
                      eitn_get_event_id(p_event),
@@ -127,6 +150,9 @@ static inline void eit_print(uint8_t *p_eit,
         case PRINT_XML:
             pf_print(print_opaque, "</EVENT>");
             break;
+        case PRINT_JSON:
+            pf_print(print_opaque, "]}");
+            break;
         default:
             break;
         }
@@ -136,6 +162,10 @@ static inline void eit_print(uint8_t *p_eit,
     case PRINT_XML:
         pf_print(print_opaque, "</EIT>");
         break;
+	case PRINT_JSON:
+		pf_print(print_opaque,
+	            "]}");
+	    break;
     default:
         pf_print(print_opaque, "end EIT");
     }

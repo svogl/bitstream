@@ -112,6 +112,13 @@ static inline void desc54_print(uint8_t *p_desc, f_print pf_print,
                      desc54n_get_user(p_desc_n)
                     );
             break;
+        case PRINT_JSON:
+            pf_print(opaque, "{'desc':'CONTENT','content_l1':\"%u\",'content_l2':\"%u\",'user':\"%u\"}",
+                     desc54n_get_content_l1(p_desc_n),
+                     desc54n_get_content_l2(p_desc_n),
+                     desc54n_get_user(p_desc_n)
+                    );
+            break;
         default:
             pf_print(opaque,"    - desc 54 content content_l1=%u content_l2=%u user=%u",
                      desc54n_get_content_l1(p_desc_n),

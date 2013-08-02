@@ -146,6 +146,13 @@ static inline void desc4d_print(const uint8_t *p_desc,
                  "<SHORT_EVENT_DESC lang=\"%3.3s\" event_name=\"%s\" text=\"%s\"/>",
                  (char *)desc4d_get_lang(p_desc), psz_event_name, psz_text);
         break;
+    case PRINT_JSON:
+        psz_event_name = dvb_string_xml_escape(psz_event_name);
+        psz_text = dvb_string_xml_escape(psz_text);
+        pf_print(print_opaque,
+                 "{'desc':'short','lang':\"%3.3s\",'event_name':'\"%s\"','text':\"%s\"}",
+                 (char *)desc4d_get_lang(p_desc), psz_event_name, psz_text);
+    	break;
     default:
         pf_print(print_opaque,
                  "    - desc 4d short_event lang=%3.3s event_name=\"%s\" text=\"%s\"",

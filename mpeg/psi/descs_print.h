@@ -54,6 +54,9 @@ static inline void descl_print(uint8_t *p_descl, uint16_t i_length,
         uint8_t i_tag = desc_get_tag(p_desc);
         j++;
 
+		if (i_print_type == PRINT_JSON) {
+			pf_print(print_opaque,",");
+		}
         desc_print_begin(p_desc, pf_print, print_opaque, i_print_type);
         if (i_private_data_specifier == 0x28 ||
             i_private_data_specifier == 0x233a) {
